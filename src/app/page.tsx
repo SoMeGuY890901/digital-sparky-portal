@@ -1,101 +1,94 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Terminal, Database, Shield, ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles, Layers, Cpu, Database } from "lucide-react";
 
 export default function Home() {
+  // Smoother, high-end ease animations replacing the bouncy springs
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+      transition: { staggerChildren: 0.1, delayChildren: 0.2 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } },
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
   };
 
   return (
-    <main className="min-h-screen bg-white text-[#0B132B] selection:bg-[#00F0FF] selection:text-[#0B132B] font-sans relative overflow-hidden">
+    <main className="min-h-screen bg-[#000000] text-white selection:bg-white selection:text-black font-sans relative overflow-hidden">
       
-      {/* Background Grid */}
-      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none" 
-           style={{ backgroundImage: 'linear-gradient(to right, #e5e7eb 1px, transparent 1px), linear-gradient(to bottom, #e5e7eb 1px, transparent 1px)', backgroundSize: '40px 40px' }} 
-      />
+      {/* Ambient Premium Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-white/[0.03] blur-[120px] rounded-full pointer-events-none" />
 
       {/* Navigation */}
-      <nav className="relative z-10 w-full px-6 py-6 border-b-2 border-[#0B132B] bg-white/90 backdrop-blur-md flex justify-between items-center">
+      <nav className="relative z-10 w-full px-8 py-6 flex justify-between items-center border-b border-white/10">
         <div className="flex flex-col">
-          <span className="font-black text-2xl tracking-tighter uppercase">Digital Spar<span className="text-[#00F0FF]">k</span>y</span>
-          <span className="text-[10px] tracking-[0.4em] font-bold pl-1">Studio</span>
+          <span className="font-semibold text-xl tracking-wide uppercase">Digital Sparky</span>
         </div>
-        <button className="hidden sm:flex items-center gap-2 bg-[#0B132B] text-white px-5 py-2.5 text-xs font-bold uppercase tracking-widest hover:bg-[#00F0FF] hover:text-[#0B132B] transition-colors border-2 border-[#0B132B]">
-          Client Portal <ArrowRight size={14} />
+        <button className="hidden sm:flex items-center gap-2 text-sm font-medium uppercase tracking-widest text-gray-400 hover:text-white transition-colors">
+          Client Portal <ArrowRight size={16} />
         </button>
       </nav>
 
       {/* Hero Section */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 lg:py-32 grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-8 py-32 grid lg:grid-cols-2 gap-20 items-center">
         
         {/* Left Column: Copywriting */}
         <motion.div variants={containerVariants} initial="hidden" animate="show" className="space-y-8">
-          <motion.div variants={itemVariants} className="inline-block bg-[#00F0FF] border-2 border-[#0B132B] px-3 py-1 text-[10px] font-black uppercase tracking-widest shadow-[4px_4px_0px_#0B132B]">
-            Enterprise Infrastructure
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 border border-white/20 rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-gray-300">
+            <Sparkles size={14} /> Enterprise Infrastructure
           </motion.div>
           
-          <motion.h1 variants={itemVariants} className="text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-[1.05]">
-            Frictionless <br /> <span className="bg-[#0B132B] text-white px-2">Competence.</span>
+          <motion.h1 variants={itemVariants} className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tighter leading-[1.1]">
+            Frictionless <br /> 
+            <span className="font-serif italic text-gray-400">Competence.</span>
           </motion.h1>
           
-          <motion.p variants={itemVariants} className="text-lg font-medium max-w-xl text-gray-700">
+          <motion.p variants={itemVariants} className="text-lg font-light max-w-xl text-gray-400 leading-relaxed">
             We engineer secure Firebase backends, AI-assisted workflows, and custom operational portals. No generic templates. Just heavy-duty digital plumbing for high-growth enterprises.
           </motion.p>
           
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 pt-4">
-            <button className="bg-[#0B132B] text-white px-8 py-4 text-sm font-black uppercase tracking-widest border-2 border-[#0B132B] shadow-[6px_6px_0px_#00F0FF] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_#00F0FF] transition-all">
-              Initialize Project
+          <motion.div variants={itemVariants} className="pt-4">
+            <button className="flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-gray-200 transition-colors">
+              Initialize Project <ArrowRight size={16} />
             </button>
           </motion.div>
         </motion.div>
 
-        {/* Right Column: Animated Architecture Graphic */}
+        {/* Right Column: Premium Glassmorphism Graphic */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }} 
-          animate={{ opacity: 1, scale: 1 }} 
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-          className="relative bg-[#0B0F14] border-2 border-[#0B132B] p-6 shadow-[12px_12px_0px_#0B132B] min-h-[400px] flex flex-col justify-center"
+          initial={{ opacity: 0, y: 40 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+          className="relative"
         >
-          <div className="absolute top-4 right-4 flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="text-[10px] font-mono text-emerald-400">SYSTEM_ONLINE</span>
-          </div>
+          <div className="relative bg-[#0A0A0A] border border-white/10 rounded-3xl p-8 shadow-2xl overflow-hidden">
+            <div className="absolute top-0 right-0 p-6 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+              <span className="text-[10px] font-mono text-gray-500 tracking-widest uppercase">System Online</span>
+            </div>
 
-          <div className="space-y-4">
-            <motion.div whileHover={{ x: 5 }} className="bg-slate-900 border border-slate-700 p-4 rounded flex items-center gap-4">
-              <div className="bg-[#00F0FF]/20 p-2 rounded text-[#00F0FF]"><Database size={20} /></div>
-              <div>
-                <p className="text-xs font-bold text-white uppercase tracking-widest">Firestore Sub-Graph</p>
-                <p className="text-[10px] text-slate-400 font-mono">14ms read latency</p>
+            <div className="space-y-4 mt-6">
+              <div className="group border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-colors p-5 rounded-2xl flex items-center gap-5">
+                <div className="bg-white/10 p-3 rounded-xl text-white"><Database size={20} strokeWidth={1.5} /></div>
+                <div>
+                  <p className="text-sm font-medium text-white tracking-wide">Firestore Sub-Graph</p>
+                  <p className="text-xs text-gray-500 font-mono mt-1">14ms read latency</p>
+                </div>
               </div>
-            </motion.div>
 
-            <motion.div whileHover={{ x: 5 }} className="bg-slate-900 border border-slate-700 p-4 rounded flex items-center gap-4">
-              <div className="bg-emerald-500/20 p-2 rounded text-emerald-400"><Shield size={20} /></div>
-              <div>
-                <p className="text-xs font-bold text-white uppercase tracking-widest">Auth Protocol</p>
-                <p className="text-[10px] text-slate-400 font-mono">Role-based access active</p>
+              <div className="group border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-colors p-5 rounded-2xl flex items-center gap-5">
+                <div className="bg-white/10 p-3 rounded-xl text-white"><Cpu size={20} strokeWidth={1.5} /></div>
+                <div>
+                  <p className="text-sm font-medium text-white tracking-wide">Edge Deployment</p>
+                  <p className="text-xs text-gray-500 font-mono mt-1">Vercel Network • US-EAST</p>
+                </div>
               </div>
-            </motion.div>
-
-            <motion.div whileHover={{ x: 5 }} className="bg-slate-900 border border-slate-700 p-4 rounded flex items-center gap-4">
-              <div className="bg-amber-500/20 p-2 rounded text-amber-400"><Terminal size={20} /></div>
-              <div>
-                <p className="text-xs font-bold text-white uppercase tracking-widest">Edge Deployment</p>
-                <p className="text-[10px] text-slate-400 font-mono">Vercel Network • US-EAST</p>
-              </div>
-            </motion.div>
+            </div>
           </div>
         </motion.div>
       </div>
