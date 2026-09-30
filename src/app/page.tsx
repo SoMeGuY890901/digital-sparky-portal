@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Layers, Cpu, Database } from "lucide-react";
+import { ArrowRight, Sparkles, Cpu, Database } from "lucide-react";
 
 export default function Home() {
   // Smoother, high-end ease animations replacing the bouncy springs
