@@ -1,26 +1,183 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+  --ink: #080706;
+  --raised: #141210;
+  --paper: #f4f0e8;
+  --muted: #b1a89a;
+  --coral: #c9553d;
+  --gold: #e0c48a;
+  --line: #2e2a26;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --color-ink: var(--ink);
+  --color-raised: var(--raised);
+  --color-paper: var(--paper);
+  --color-muted: var(--muted);
+  --color-coral: var(--coral);
+  --color-gold: var(--gold);
+  --color-line: var(--line);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--ink);
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100%;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--coral);
+  color: #000;
+}
+
+:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 50;
+  transform: translateY(-160%);
+  background: var(--coral);
+  color: #000;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.prose-link {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.75rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--coral);
+  color: #000;
+}
+
+.btn-primary:hover {
+  background: #d4654e;
+}
+
+.btn-secondary {
+  border: 1px solid #5c564e;
+  color: var(--paper);
+  background: transparent;
+}
+
+.btn-secondary:hover {
+  border-color: var(--gold);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #5c564e;
+  border-radius: 2px;
+  background: var(--raised);
+  color: var(--paper);
+  font: inherit;
+  font-size: 1rem;
+  padding: 0.75rem 0.9rem;
+}
+
+.field textarea {
+  min-height: 9rem;
+  resize: vertical;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.spark-draw {
+  stroke-dasharray: 160;
+  stroke-dashoffset: 160;
+  animation: spark-draw 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.spark-draw-inner {
+  stroke-dasharray: 86;
+  stroke-dashoffset: 86;
+  animation-delay: 0.28s;
+}
+
+.spark-core {
+  opacity: 0;
+  animation: spark-core 0.35s ease 1.15s forwards;
+}
+
+@keyframes spark-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes spark-core {
+  to {
+    opacity: 1;
+  }
+}
+
+section[id] {
+  scroll-margin-top: 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .spark-draw,
+  .spark-draw-inner,
+  .spark-core {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
 }
