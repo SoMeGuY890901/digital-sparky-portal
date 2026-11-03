@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 import { ArrowRight, Sparkles, Cpu, Database } from "lucide-react";
 
@@ -32,9 +33,9 @@ export default function Home() {
         <div className="flex flex-col">
           <span className="font-semibold text-xl tracking-wide uppercase">Digital Sparky</span>
         </div>
-        <button className="hidden sm:flex items-center gap-2 text-sm font-medium uppercase tracking-widest text-gray-400 hover:text-white transition-colors">
+        <Link href="/portal" className="inline-flex min-h-12 items-center gap-2 text-sm font-medium uppercase tracking-widest text-gray-400 hover:text-white transition-colors">
           Client Portal <ArrowRight size={16} />
-        </button>
+        </Link>
       </nav>
 
       {/* Hero Section */}
