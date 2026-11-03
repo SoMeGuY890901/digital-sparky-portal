@@ -1,7 +1,31 @@
 "use client";
 
+import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 import { ArrowRight, Sparkles, Cpu, Database } from "lucide-react";
+
+const pricingTiers = [
+  {
+    name: "Starter Website",
+    price: "$1,500–$2,500",
+    description: "A clean, fast, mobile-friendly site for a small business.",
+  },
+  {
+    name: "Growth Website",
+    price: "$3,500–$5,000",
+    description: "More pages, custom design, SEO setup, and lead capture.",
+  },
+  {
+    name: "Pro Website + Automation",
+    price: "$7,500–$12,000",
+    description: "Online booking, payments, client portals, or AI workflows.",
+  },
+  {
+    name: "Care Plan",
+    price: "$100–$200/mo",
+    description: "Hosting, security, updates, backups, and small edits.",
+  },
+];
 
 export default function Home() {
   const containerVariants: Variants = {
@@ -95,6 +119,55 @@ export default function Home() {
           </div>
         </motion.div>
       </div>
+
+      {/* Pricing */}
+      <section id="pricing" className="relative z-10 max-w-7xl mx-auto px-8 pb-32">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-2xl space-y-6"
+        >
+          <div className="inline-flex items-center gap-2 border border-white/20 rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-gray-300">
+            Simple, honest pricing
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-light tracking-tighter leading-[1.1]">
+            Fixed scope. <span className="font-serif italic text-gray-400">Clear numbers.</span>
+          </h2>
+          <p className="text-lg font-light text-gray-400 leading-relaxed">
+            Every project is quoted at a fixed price after a free discovery call.
+          </p>
+        </motion.div>
+
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+          {pricingTiers.map((tier, index) => (
+            <motion.article
+              key={tier.name}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: index * 0.08 }}
+              className="flex flex-col border border-white/10 bg-[#0A0A0A] rounded-3xl p-6 sm:p-8"
+            >
+              <h3 className="text-sm font-medium tracking-wide text-white">{tier.name}</h3>
+              <p className="mt-6 text-2xl sm:text-3xl font-light tracking-tight text-white">
+                {tier.price}
+              </p>
+              <p className="mt-4 text-sm font-light text-gray-400 leading-relaxed flex-1">
+                {tier.description}
+              </p>
+              <Link
+                href="/contact"
+                aria-label={`Get a free quote for ${tier.name}`}
+                className="mt-8 inline-flex items-center justify-center gap-2 bg-white text-black px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-gray-200 transition-colors"
+              >
+                Get a free quote <ArrowRight size={14} />
+              </Link>
+            </motion.article>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
